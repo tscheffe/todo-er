@@ -10,3 +10,9 @@ Simple ruby webservice that does TODOs!
 - Persist all data through a later determined method
 - Requests and responses as JSON
 
+## Tech
+- (Ruby 2.2.2)[http://ruby-doc.org/core-2.2.2/]
+- (Bundler)[http://bundler.io/]
+- (rbenv)[https://github.com/sstephenson/rbenv]
+- (Sinatra)[http://www.sinatrarb.com/intro.html]
+- (Thin)[http://code.macournoyer.com/thin/doc/files/README.html]
