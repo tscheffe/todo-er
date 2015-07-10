@@ -24,34 +24,14 @@ It will report which localhost port it's listening on
 
 ## API
 
-#### Read All
+#### Create new TODO for user 2
 Request:
 ````
-GET localhost:9292/todos/
-````
-Response:
-````
-[
-  {
-    "id": 2,
-    "created_at": "2015-07-10T01:09:58-05:00",
-    "due_date": "2015-07-13T01:09:58-05:00",
-    "note": "This is my test todo to see that it works"
-  },
-  {
-    "id": 3,
-    "created_at": "2015-07-10T01:11:53-05:00",
-    "due_date": "2015-07-16T01:09:58-05:00",
-    "note": "This is my other test todo to see that it works!"
-  },
-  ...
-]
-````
+POST localhost:9292/todos/2
 
-#### Create
-Request:
-````
-POST localhost:9292/todos/
+Headers:
+Content-Type application/json
+
 Body:
 {
   "due_date": "2015-07-13T01:09:58-05:00",
@@ -61,26 +41,70 @@ Body:
 Response:
 ````
 {
-  "id": 4,
-  "created_at": "2015-07-10T01:17:06-05:00",
+  "id": 5,
+  "user_id": 2,
+  "created_at": "2015-07-10T01:46:22-05:00",
   "due_date": "2015-07-13T01:09:58-05:00",
-  "note": "This is my test todo to see that it works!"
+  "note": "This is my test todo to see that it works!",
+  "completed": false
 }
 ````
-#### Read
+
+#### Mark item 6 completed
 Request:
 ````
-get localhost:9292/todos/4
+PUT localhost:9292/todos/6/complete
 ````
 Response:
 ````
 {
-  "id": 4,
-  "created_at": "2015-07-10T01:17:06-05:00",
+  "id": 6,
+  "user_id": 2,
+  "created_at": "2015-07-10T01:47:20-05:00",
   "due_date": "2015-07-13T01:09:58-05:00",
-  "note": "This is my test todo to see that it works!"
+  "note": "This is another test todo because it works!",
+  "completed": true
 }
 ````
+
+#### Retrieve user 2's completed items
+Request:
+````
+GET localhost:9292/todos/2/completed
+````
+Response:
+````
+[
+  {
+    "id": 6,
+    "user_id": 2,
+    "created_at": "2015-07-10T01:47:20-05:00",
+    "due_date": "2015-07-13T01:09:58-05:00",
+    "note": "This is another test todo because it works!",
+    "completed": true
+  }
+]
+````
+
+#### Retrieve user 2's uncompleted items
+Request:
+````
+GET localhost:9292/todos/2/uncompleted
+````
+Response:
+````
+[
+  {
+    "id": 5,
+    "user_id": 2,
+    "created_at": "2015-07-10T01:46:22-05:00",
+    "due_date": "2015-07-13T01:09:58-05:00",
+    "note": "This is my test todo to see that it works!",
+    "completed": false
+  }
+]
+````
+
 ## Thanks To
 - [This helpful github]( https://github.com/sklise/sinatra-api-example/blob/master/app.rb )
 - [This dotnet man after my own heart]( http://www.dotnet-rocks.com/2014/04/28/create-a-lightweight-rest-service-using-sinatra/ )
