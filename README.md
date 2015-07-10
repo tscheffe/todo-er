@@ -43,7 +43,8 @@ Response:
     "created_at": "2015-07-10T01:11:53-05:00",
     "due_date": "2015-07-16T01:09:58-05:00",
     "note": "This is my other test todo to see that it works!"
-  }
+  },
+  ...
 ]
 ````
 
@@ -56,6 +57,20 @@ Body:
   "due_date": "2015-07-13T01:09:58-05:00",
   "note": "This is my test todo to see that it works!"
 }
+````
+Response:
+````
+{
+  "id": 4,
+  "created_at": "2015-07-10T01:17:06-05:00",
+  "due_date": "2015-07-13T01:09:58-05:00",
+  "note": "This is my test todo to see that it works!"
+}
+````
+#### Read
+Request:
+````
+get localhost:9292/todos/4
 ````
 Response:
 ````

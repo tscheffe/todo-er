@@ -26,3 +26,15 @@ post '/todos/' do
     halt 500
   end
 end
+
+get '/todos/:id' do
+  content_type :json
+
+  todo = Todo.get(params[:id].to_i)
+
+  if todo
+    todo.to_json
+  else
+    halt 404
+  end
+end
