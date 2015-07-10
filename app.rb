@@ -1,10 +1,8 @@
 require 'sinatra'
 
-
 get '/' do
   "This is my baller todo api!"
 end
-
 
 get '/todos/' do
   content_type :json
@@ -18,7 +16,9 @@ end
 post '/todos/' do
   content_type :json
 
-  todo = Todo.new(params)
+  params_json = JSON.parse(request.body.read)
+
+  todo = Todo.new(params_json)
 
   if todo.save
     todo.to_json
